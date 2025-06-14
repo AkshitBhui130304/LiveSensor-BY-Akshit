@@ -4,5 +4,9 @@ numpy
 scikit-learn
 pymongo
 python-dotenv
+pyYAML
+dill
+imblearn == 0.0
 
--e . #editable mode
+
+-e . #editable mode 
