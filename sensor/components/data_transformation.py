@@ -87,7 +87,7 @@ class DataTransformation:
             target_feature_train_df = train_df[TARGET_COLUMN].replace(TargetValueMapping().to_dict())
 
             input_feature_test_def = test_df.drop(columns=[TARGET_COLUMN], axis=1)
-            target_feature_test_def = test_df[TARGET_COLUMN]  
+            target_feature_test_def = test_df[TARGET_COLUMN].replace(TargetValueMapping().to_dict()) 
            
             # Fit the preprocessor on the training data
             preprocessor_object = preprocessor.fit(input_feature_train_def)
@@ -132,5 +132,7 @@ class DataTransformation:
 
             )
             logging.info(f"Data transformation artifact: {data_transformation_artifact}")
+
+            return data_transformation_artifact
         except Exception as e:
             raise SensorException(e, sys)
