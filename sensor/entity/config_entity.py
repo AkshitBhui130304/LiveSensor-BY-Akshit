@@ -59,4 +59,11 @@ class ModelTrainerConfig:
         self.trained_model_dir = os.path.join(self.model_trainer_dir, tp.MODEL_TRAINER_TRAINED_MODEL_DIR)
         self.trained_model_file_path = os.path.join(self.trained_model_dir, tp.MODEL_TRAINER_TRAINED_MODEL_FILE_NAME)
         self.expected_accuracy = tp.MODEL_TRAINER_EXPECTED_ACCURACY
-        self.over_fitting_under_fitting_threshold = tp.MODEL_TRAINER_OVER_FITTING_UNDER_FITTING_THRESHOLD        
+        self.over_fitting_under_fitting_threshold = tp.MODEL_TRAINER_OVER_FITTING_UNDER_FITTING_THRESHOLD   
+
+
+class ModelEvaluationConfig:
+    def __init__(self, training_pipeline_config:TrainingPipelineConfig):
+        self.model_evaluator_dir = os.path.join(training_pipeline_config.artifact_dir, tp.MODEL_EVALUATOR_DIR_NAME)
+        self.model_evaluation_report_file_path = os.path.join(self.model_evaluator_dir, tp.MODEL_EVALUATOR_REPORT_FILE_NAME)
+        self.changed_threshold_score = tp.MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE             

@@ -1,6 +1,7 @@
-from sensor.entity.config_entity import TrainingPipelineConfig ,DataIngestionConfig, DataValidationConfig, DataTransformationConfig
+from sensor.components.model_evaluation import ModelEvaluation
+from sensor.entity.config_entity import ModelEvaluationConfig, TrainingPipelineConfig ,DataIngestionConfig, DataValidationConfig, DataTransformationConfig
 from sensor.exception  import SensorException
-from sensor.entity.artifact_entity import DataIngestionArtifact
+from sensor.entity.artifact_entity import DataIngestionArtifact, ModelEvaluationArtifact
 from sensor.logger import logging
 import sys , os 
 from sensor.components.data_ingestion import DataIngestion
@@ -49,6 +50,13 @@ class TrainPipeline:
 
              data_transformation_artifact:DataTransformationArtifact = self.start_data_transformation(data_validation_artifact=data_validation_artifact)
              model_trainer_artifact:ModelTrainerArtifact = self.start_model_trainer(data_transformation_artifact=data_transformation_artifact)
+             model_evaluation_artifact:ModelEvaluationArtifact = self.start_model_evaluation(data_validation_artifact=data_validation_artifact,
+                                                                                             model_trainer_artifact=model_trainer_artifact)
+             
+             if not model_evaluation_artifact.is_model_accepted:
+                    logging.info(f"Model is not accepted, stopping the pipeline.")
+            
+                    
         except Exception as e :    
             raise  SensorException(e,sys)
         
@@ -86,3 +94,16 @@ class TrainPipeline:
             return model_trainer_artifact
         except Exception as e:
             raise SensorException(e, sys) from e   
+        
+
+    def start_model_evaluation(self,data_validation_artifact:DataValidationArtifact,
+                                model_trainer_artifact:ModelTrainerArtifact)->ModelEvaluationArtifact:
+        try:
+            self.model_evaluator_config = ModelEvaluationConfig(training_pipeline_config=self.training_pipeline_config)
+            model_evaluation = ModelEvaluation(model_evaluator_config=self.model_evaluator_config,
+                                               model_trainer_artifact=model_trainer_artifact,
+                                               data_validation_artifact=data_validation_artifact)
+            model_evaluation_artifact = model_evaluation.initiate_model_evaluation()
+            return model_evaluation_artifact
+        except Exception as e:
+            raise SensorException(e, sys) from e
