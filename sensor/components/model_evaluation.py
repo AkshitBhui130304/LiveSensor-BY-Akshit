@@ -56,6 +56,10 @@ class ModelEvaluation:
                     train_model_metric_artifact=self.model_trainer_artifact.test_metric_artifact,
                     best_model_metric_artifact=None
                 )
+                write_yaml_file(self.model_evaluator_config.model_evaluation_report_file_path,
+                model_evaluation_artifact.__dict__
+              )
+                
                 logging.info(f"Model evaluation artifact: {model_evaluation_artifact}")
                 return model_evaluation_artifact
             
@@ -85,10 +89,9 @@ class ModelEvaluation:
                 best_model_metric_artifact=latest_model_metric_artifact if is_model_accepted else None
             )
 
-            write_yaml_file(
-                file_path=self.model_evaluator_config.model_evaluation_report_file_path,
-                data=model_evaluation_artifact.__dict__
-            )
+            write_yaml_file(self.model_evaluator_config.model_evaluation_report_file_path,
+                model_evaluation_artifact.__dict__
+              )
             logging.info(f"Model evaluation artifact: {model_evaluation_artifact}")
             return model_evaluation_artifact
         except Exception as e:
