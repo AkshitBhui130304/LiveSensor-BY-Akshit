@@ -1,9 +1,8 @@
 # Core dependencies
 pandas==2.1.4
-numpy==1.23.5
-scipy==1.11.4
-scikit-learn==1.2.2               # ✅ Compatible with imbalanced-learn
-imbalanced-learn==0.11.0          # ✅ Needed for SMOTETomek
+numpy==1.26.4
+scikit-learn==1.2.2
+imbalanced-learn==0.11.0
 
 # ML models
 xgboost==1.6.2
@@ -20,6 +19,3 @@ setuptools==65.5.1
 # Streamlit
 streamlit
 streamlit-aggrid
-
-# Remove this unless you're using setup.py
-# -e .
