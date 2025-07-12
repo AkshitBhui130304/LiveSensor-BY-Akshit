@@ -6,7 +6,7 @@ from sensor.ml.model.estimator import ModelResolver, TargetValueMapping
 from sensor.constant.training_pipeline import SAVED_MODEL_DIR
 from sensor.pipeline.training_pipeline import TrainPipeline
 from sensor.utils2.main_utils import load_object
-
+#Akshit's app
 st.title("Sensor Fault Prediction App")
 
 # 🧠 TRAINING SECTION
