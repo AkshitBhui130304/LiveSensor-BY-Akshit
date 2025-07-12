@@ -14,7 +14,7 @@ pymongo==4.2.0
 python-dotenv
 pyyaml
 dill
-setuptools
+setuptools==65.5.1
 
 # Streamlit
 streamlit
