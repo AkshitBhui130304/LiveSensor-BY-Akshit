@@ -10,5 +10,8 @@ class EnvironmentVariable:
 
 env_variable = EnvironmentVariable()  
 
-mongo_client = pymongo.MongoClient(env_variable.MONGO_DB_URL)
+mongo_client = pymongo.MongoClient(env_variable.MONGO_DB_URL,
+                                   connectTimeoutMS=100000,
+                                   serverSelectionTimeoutMS=100000,
+                                   socketTimeoutMS=100000)
 

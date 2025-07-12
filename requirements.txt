@@ -8,5 +8,7 @@ pyYAML
 dill
 imblearn == 0.0
 xgboost == 1.6.2
+streamlit
+streamlit-aggrid
 
 -e . #editable mode 
