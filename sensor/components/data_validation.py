@@ -1,4 +1,4 @@
-from distutils import dir_util
+#from distutils import dir_util
 
 from sensor.constant.training_pipeline import SCHEMA_FILE_PATH
 from sensor.utils2.main_utils import read_yaml, write_yaml_file
