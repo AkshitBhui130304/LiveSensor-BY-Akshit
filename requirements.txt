@@ -1,6 +1,6 @@
 # Core dependencies
 pandas==2.0.3
-numpy==1.24.4
+numpy>=1.25.2
 scikit-learn==1.2.2
 imbalanced-learn==0.11.0
 
@@ -16,7 +16,7 @@ pyyaml
 dill
 setuptools==65.5.1
 
-# Streamlit + visualization
+# Streamlit
 streamlit>=1.20.0
 plotly==5.10.0
 altair==4.2.2
